@@ -4,11 +4,49 @@
   
   
   <entry>
+    <title>编译原理</title>
+    <link href="/2023/02/02/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"/>
+    <url>/2023/02/02/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>语言</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Cpython</title>
+    <link href="/2023/02/01/Cpython/"/>
+    <url>/2023/02/01/Cpython/</url>
+    
+    <content type="html"><![CDATA[<p>翻译<a href="https://realpython.com/cpython-source-code-guide/">参考</a></p><h1 id="Window编译Cpython"><a href="#Window编译Cpython" class="headerlink" title="Window编译Cpython"></a>Window编译Cpython</h1><ol><li> Visual Studio 2019</li></ol><p><img src="https://files.realpython.com/media/Screen_Shot_2019-08-22_at_2.47.23_pm.5e8682a89503.png" alt="Visual Studio Options Window"></p><ol start="2"><li><p>打开后选择第一个，克隆保存。</p><p>地址  <a href="https://github.com/python/cpython">https://github.com/python/cpython</a></p></li></ol><p><img src="https://files.realpython.com/media/Capture4.ea01418a971c.PNG" alt="Cloning projects in Visual Studio"></p><ol start="3"><li><p>选择pcbuild.sln</p></li><li><p>在视图中打开终端，执行get_externals.bat（建议使用手机热点，外网比较卡）</p><p><img src="C:\Users\dong\AppData\Roaming\Typora\typora-user-images\image-20230201145739651.png" alt="image-20230201145739651"></p></li><li><p>选择 debug win64   生成解决方案</p></li></ol><p><img src="C:\Users\dong\AppData\Roaming\Typora\typora-user-images\image-20230201145759583.png" alt="image-20230201145759583"></p><ol start="6"><li><p>F5执行</p><p><img src="C:\Users\dong\AppData\Roaming\Typora\typora-user-images\image-20230201145852185.png" alt="image-20230201145852185"></p></li><li><p>更改python环境</p><p><img src="https://files.realpython.com/media/Environments.96a819ecf0b3.png" alt="Choosing Python environments"></p></li></ol><p>点击添加环境，选择刚才生成的python.exe路径</p><p><img src="https://files.realpython.com/media/environment3.d33858c1f6aa.PNG" alt="Adding an environment in VS2019"></p><ol start="8"><li>点击交互窗口</li></ol><p><img src="C:\Users\dong\AppData\Roaming\Typora\typora-user-images\image-20230201154104369.png" alt="image-20230201154104369"></p><h1 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h1><p>一些编译器是把编程语言转为机器语言直接在机器上执行或者中间语言在虚拟机上执行。</p><p><a href="https://zhuanlan.zhihu.com/p/79656976">参考</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>语言</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>python学习(1)</title>
     <link href="/2023/01/31/python%E5%AD%A6%E4%B9%A0-1/"/>
     <url>/2023/01/31/python%E5%AD%A6%E4%B9%A0-1/</url>
     
-    <content type="html"><![CDATA[<h1 id="初识"><a href="#初识" class="headerlink" title="初识"></a>初识</h1><p> 说实话，我学习pyhon没坚持看完过一本书，或者一整套教学视频。总是看了一半或者更少就放弃了。一直觉得自己不够专业也不够完善。直到我看到一些名言警句。</p><ol><li>不要完美主义。</li><li>学习要冲着自己的目标去。</li><li>不要迷信权威的“好”教材。</li><li>实践！ </li></ol><p>其中最重要的就是 <strong>不要完美主义</strong> ，当然其他几句也很重要，对于码农来说！</p><p>所以我这里不在介绍python的语法，这个东西网上一大堆，且看了也记不住，不如自己实际使用的时候百度一下。</p><p>那我这里说些不一样的，但是很重要的，python原理。</p><h1 id="python原理"><a href="#python原理" class="headerlink" title="python原理"></a>python原理</h1><h2 id="运行原理"><a href="#运行原理" class="headerlink" title="运行原理"></a>运行原理</h2><p>Python解释器将源代码转换为字节码，然后把编译好的字节码转发到Python虚拟机（PVM）中进行执行。</p><p><img src="https://img-blog.csdnimg.cn/img_convert/5b0e0a1da8ac8784c596dadc5c244afc.png" alt="image"></p><p>1.执行 python XX.py 后，将会启动 Python 的解释器<br>2.python解释器的编译器会将.py源文件编译（解释）成字节码生成PyCodeObject字节码对象存放在内存中。<br>3.python解释器的虚拟机将执行内存中的字节码对象转化为机器语言，虚拟机与操作系统交互，使机器语言在机器硬件上运行。<br>4.运行结束后python解释器则将PyCodeObject写回到pyc文件中。当python程序第二次运行时，首先程序会在硬盘中寻找pyc文件，如果找到，则直接载入，否则就重复上面的过程。</p><p><a href="https://blog.csdn.net/weixin_43422340/article/details/114316820">参考</a></p><p>但是为什么直接运行python程序没有看到.pyc文件，而导入模块就能看到生成的.pyc文件呢？</p><p>这里涉及到一个缓存机制，直接运行python程序其实也会生成.pyc文件，只是没有保存，python虚拟机将直接运行的程序视为长期运行的程序，不需要频繁调用，而导入模块，则视为会频繁调用；所以导入模块时，会生成.pyc文件，如此下次再导入该模块时，会先查看是否有.pyc文件，如果有，则直接导入.pyc文件；如果没有，则将模块转码成字节码文件pyc，后再导入字节码文件。这里会涉及到模块修改的问题，如果模块有修改，虚拟机会自动检测模块程序的修改时间，如果与修改则重新生成字节码文件。</p><p><a href="https://www.cnblogs.com/restran/p/4903056.html">参考</a> <strong>仔细阅读</strong></p><p>编译原理</p><p><img src="https://pic1.zhimg.com/80/v2-790b89a1e1214a5d6745879e648baf48_1440w.webp" alt="img"></p><p>说白了就是把源代码转为机器能识别的二进制就是编译器，python的主流的编译器就是Cpython，用c</p><p><a href="https://zhuanlan.zhihu.com/p/362072187">参考</a></p><p><a href="https://blog.csdn.net/weixin_43949535/article/details/118401648">编译原理</a></p><h2 id="一切皆是对象"><a href="#一切皆是对象" class="headerlink" title="一切皆是对象"></a>一切皆是对象</h2><h2 id="多线程和多进程"><a href="#多线程和多进程" class="headerlink" title="多线程和多进程"></a>多线程和多进程</h2><h2 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h2><p><a href="http://hbprotoss.github.io/post/pythonla-ji-hui-shou-ji-zhi/">参考</a></p><p>本来到这里就结束了，但是你懂的，查的资料越多越感觉自己要学的越多。挖坑2本书。</p><ol><li>&lt;&lt;自制编程语言&gt;&gt;</li></ol><p>（<a href="https://blog.csdn.net/qq_59848320/article/details/123649160%EF%BC%89">https://blog.csdn.net/qq_59848320/article/details/123649160）</a></p><p>（<a href="https://www.cnblogs.com/antispam/p/4015116.html%EF%BC%89">https://www.cnblogs.com/antispam/p/4015116.html）</a></p><p>（如何学习编译原理？ - 腾讯技术工程的回答 - 知乎 <a href="https://www.zhihu.com/question/21515496/answer/1689704074%EF%BC%89">https://www.zhihu.com/question/21515496/answer/1689704074）</a></p><ol start="2"><li>&lt;&lt;python源码剖析&gt;&gt;</li></ol><p>（<a href="https://zhuanlan.zhihu.com/p/358690339%EF%BC%89">https://zhuanlan.zhihu.com/p/358690339）</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="初识"><a href="#初识" class="headerlink" title="初识"></a>初识</h1><p> 说实话，我学习pyhon没坚持看完过一本书，或者一整套教学视频。总是看了一半或者更少就放弃了。一直觉得自己不够专业也不够完善。直到我看到一些名言警句。</p><ol><li>不要完美主义。</li><li>学习要冲着自己的目标去。</li><li>不要迷信权威的“好”教材。</li><li>实践！ </li></ol><p>其中最重要的就是 <strong>不要完美主义</strong> ，当然其他几句也很重要，对于码农来说！</p><p>所以我这里不在介绍python的语法，这个东西网上一大堆，且看了也记不住，不如自己实际使用的时候百度一下。</p><p>那我这里说些不一样的，但是很重要的，python原理。</p><h1 id="python原理"><a href="#python原理" class="headerlink" title="python原理"></a>python原理</h1><h2 id="运行原理"><a href="#运行原理" class="headerlink" title="运行原理"></a>运行原理</h2><p>Python解释器将源代码转换为字节码，然后把编译好的字节码转发到Python虚拟机（PVM）中进行执行。</p><p><img src="https://img-blog.csdnimg.cn/img_convert/5b0e0a1da8ac8784c596dadc5c244afc.png" alt="image"></p><p>1.执行 python XX.py 后，将会启动 Python 的解释器<br>2.python解释器的编译器会将.py源文件编译（解释）成字节码生成PyCodeObject字节码对象存放在内存中。<br>3.python解释器的虚拟机将执行内存中的字节码对象转化为机器语言，虚拟机与操作系统交互，使机器语言在机器硬件上运行。<br>4.运行结束后python解释器则将PyCodeObject写回到pyc文件中。当python程序第二次运行时，首先程序会在硬盘中寻找pyc文件，如果找到，则直接载入，否则就重复上面的过程。</p><p><a href="https://blog.csdn.net/weixin_43422340/article/details/114316820">参考</a></p><p>但是为什么直接运行python程序没有看到.pyc文件，而导入模块就能看到生成的.pyc文件呢？</p><p>这里涉及到一个缓存机制，直接运行python程序其实也会生成.pyc文件，只是没有保存，python虚拟机将直接运行的程序视为长期运行的程序，不需要频繁调用，而导入模块，则视为会频繁调用；所以导入模块时，会生成.pyc文件，如此下次再导入该模块时，会先查看是否有.pyc文件，如果有，则直接导入.pyc文件；如果没有，则将模块转码成字节码文件pyc，后再导入字节码文件。这里会涉及到模块修改的问题，如果模块有修改，虚拟机会自动检测模块程序的修改时间，如果与修改则重新生成字节码文件。</p><p><a href="https://www.cnblogs.com/restran/p/4903056.html">参考</a> <strong>仔细阅读</strong></p><p>编译原理</p><p><img src="https://pic1.zhimg.com/80/v2-790b89a1e1214a5d6745879e648baf48_1440w.webp" alt="img"></p><p>说白了就是把源代码转为机器能识别的二进制就是编译器，python的主流的编译器就是Cpython，用c</p><p><a href="https://zhuanlan.zhihu.com/p/362072187">参考</a></p><p><a href="https://blog.csdn.net/weixin_43949535/article/details/118401648">编译原理</a></p><h2 id="一切皆是对象"><a href="#一切皆是对象" class="headerlink" title="一切皆是对象"></a>一切皆是对象</h2><p><img src="https://img-blog.csdnimg.cn/0ed2972a8f94430ebc5b328c8ab0943b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Lic5Lic5bCx5piv5oiR,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p><h2 id="多线程和多进程"><a href="#多线程和多进程" class="headerlink" title="多线程和多进程"></a>多线程和多进程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> multiprocessing <span class="hljs-keyword">as</span> mp<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params">q</span>):<br>    q.put(<span class="hljs-string">&#x27;hello&#x27;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    mp.set_start_method(<span class="hljs-string">&#x27;spawn&#x27;</span>)<br>    q = mp.Queue()<br>    p = mp.Process(target=foo, args=(q,))<br>    p.start()<br>    <span class="hljs-built_in">print</span>(q.get())<br>    p.join()<br></code></pre></td></tr></table></figure><p><a href="https://zhuanlan.zhihu.com/p/358668412">参考</a></p><p><a href="https://zhuanlan.zhihu.com/p/351355024">参考</a></p><h2 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h2><p><a href="http://hbprotoss.github.io/post/pythonla-ji-hui-shou-ji-zhi/">参考</a></p><p><a href="http://hbprotoss.github.io/post/pythonla-ji-hui-shou-ji-zhi/">参考</a></p><p>本来到这里就结束了，但是你懂的，查的资料越多越感觉自己要学的越多。挖坑2本书。</p><ol><li>&lt;&lt;自制编程语言&gt;&gt;</li></ol><p>（<a href="https://blog.csdn.net/qq_59848320/article/details/123649160%EF%BC%89">https://blog.csdn.net/qq_59848320/article/details/123649160）</a></p><p>（<a href="https://www.cnblogs.com/antispam/p/4015116.html%EF%BC%89">https://www.cnblogs.com/antispam/p/4015116.html）</a></p><p>（如何学习编译原理？ - 腾讯技术工程的回答 - 知乎 <a href="https://www.zhihu.com/question/21515496/answer/1689704074%EF%BC%89">https://www.zhihu.com/question/21515496/answer/1689704074）</a></p><ol start="2"><li>&lt;&lt;python源码剖析&gt;&gt;</li></ol><p>（<a href="https://zhuanlan.zhihu.com/p/358690339%EF%BC%89">https://zhuanlan.zhihu.com/p/358690339）</a></p>]]></content>
     
     
     
